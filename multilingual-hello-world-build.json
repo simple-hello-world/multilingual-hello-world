@@ -1,0 +1,42 @@
+{
+    "name": "multilingual-hello-world",
+    "repo": "https://github.com/simple-hello-world/multilingual-hello-world.git",
+    "modules": [
+        {
+            "name": "java-hello-world",
+            "source": "/java-hello-world",
+            "lang": "java",
+            "command": "mvn clean install",
+            "artifacts": [
+                "target/java-hello-world-1.0.0-SNAPSHOT.jar"
+            ]
+        },
+        {
+            "name": "go-hello-world",
+            "source": "/go-hello-world",
+            "lang": "go",
+            "command": "make -C src/ all",
+            "artifacts": [
+                "bin/go-hello-world-linux-amd64",
+                "bin/go-hello-world-amd64.exe",
+                "bin/go-hello-world-darwin-amd64",
+                "bin/go-hello-world-linux-i386",
+                "bin/go-hello-world-i386.exe",
+                "bin/go-hello-world-darwin-i386"
+            ]
+        },
+        {
+            "name": "bash-all",
+            "dependsOn": [
+                "java-hello-world",
+                "go-hello-world"
+            ],
+            "source": "/bash-depends-on-all",
+            "lang": "java",
+            "command": "./hello-world-from-all.sh",
+            "artifacts": [
+                "../build/output.txt"
+            ]
+        }
+    ]
+}
